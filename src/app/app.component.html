@@ -1,0 +1,28 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<h2>Contact List</h2>
+
+<input type="text" [(ngModel)]="firstName" name="firstName" placeholder="First Name..">
+<input type="text" [(ngModel)]="lastName" name="lastName" placeholder="Last Name..">
+<input type ="number"[(ngModel)]="number" name="number" placeholder="Phone..">
+<input type="text" [(ngModel)]="email" name="email" placeholder="E-mail..">
+<textarea type="text" [(ngModel)]="address" name="address" placeholder="Address.."></textarea>
+<input type="submit" value="Add contact" (click)="addContact()">
+
+<ul *ngFor="let contact of contacts | async">
+    
+  <li (click)="getContact(contact.id)">
+    <strong>{{contact.data.firstName}} {{contact.data.lastName}}</strong>(<a href="#" (click)="deleteContact(contact.id)">delete</a>)
+    <br>
+    {{contact.data.number}}
+  </li>
+ 
+</ul>
+
+<h1>A specific contact:</h1>
+
+    <h3>{{ (contact | async)?.firstName }} {{ (contact | async)?.lastName }}</h3>
+    <p>{{ (contact | async)?.number }}</p>
+    <p>{{ (contact | async)?.email }}</p>
+    <p>{{ (contact | async)?.address }}</p>
+
+
